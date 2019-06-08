@@ -1,40 +1,36 @@
-import pandas as pd
-import measures
 import metrics
+import response
 
-#
-# float64
-# int                  int64
-# datetime    datetime64[ns]
-# string              object
-import numpy as np
+
+"""
+take a pandas series and extract stats according to column type
+"""
 
 
 def numeric(series):
-    stats = dict()
-    stats['attr'] = series.name
-    stats['type'] = 'NUMERIC'
-    stats['mean'] = series.mean()
-    stats['std'] = series.std()
-    stats['variance'] = series.var()
-    stats['min'] = series.min()
-    stats['max'] = series.max()
-    stats['range'] = stats['max'] - stats['min']
-    stats.update(metrics.median_iqr(series))
-    stats['kurtosis'] = series.kurt()
-    stats['skewness'] = series.skew()
-    stats['sum'] = series.sum()
+    stats = response.Numeric()
+    stats.attr = series.name
+    stats.mean = series.mean()
+    stats.std = series.std()
+    stats.variance = series.var()
+    stats.min = series.min()
+    stats.max = series.max()
+    stats.range = stats.max - stats.min
+    stats.median, stats.iqr = metrics.median_iqr(series)
+    stats.kurtosis = series.kurt()
+    stats.skewness = series.skew()
+    # todo change responses object after first order solution to contain this logic - how it computes itself
+    #stats['kl_divergence'] = measures.kullback_leibler_divergence()
     # the mean absolute deviation is around the mean here
-    stats['mad'] = series.mad()
-    stats['p_zeros'] = '{0:.2f}'.format(float(series[series == 0].count()) / len(series.index) * 100)
-    stats['p_nan'] = '{0:.2f}'.format(float(series.isna().sum()) / len(series.index) * 100)
+    stats.mad = series.mad()
+    stats.p_zeros = '{0:.2f}'.format(float(series[series == 0].count()) / len(series.index) * 100)
+    stats.p_nan = '{0:.2f}'.format(float(series.isna().sum()) / len(series.index) * 100)
 
     return stats
 
 
 def string(series, head=3):
     # Only run if at least 1 non-missing value
-    # value_counts, distinct_count = base.get_groupby_statistic(series)
     stats = dict()
     stats['attr'] = series.name
     stats['type'] = 'STRING'
