@@ -16,3 +16,14 @@ class Numeric(StatsResponse):
              }
         ))
         self.type = 'NUMERIC'
+
+
+class String(StatsResponse):
+
+    def __init__(self):
+        super(String, self).__init__()
+        self.__dict__.update(dict().fromkeys(
+            {'distinct', 'freq'}
+        ))
+        self.type = 'STRING'
+        self.freq = list()

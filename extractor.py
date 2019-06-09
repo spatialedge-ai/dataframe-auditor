@@ -34,17 +34,13 @@ def numeric(series):
 
 def string(series, head=3):
     # Only run if at least 1 non-missing value
-    stats = dict()
-    stats['attr'] = series.name
-    stats['type'] = 'STRING'
+    stats = response.String()
+    stats.attr = series.name
     value_counts = series.value_counts(dropna=False)
     distinct = value_counts.count()
-    stats['distinct'] = distinct
-    stats['freq'] = list()
-    print(value_counts.index[0:head].values, value_counts.iloc[0:head].values)
+    stats.distinct = distinct
     for n, v in zip(value_counts.index[0:head], value_counts.iloc[0:head].values):
-        print(n, v)
-        stats['freq'].append({'name': n, 'value': v})
+        stats.freq.append({'name': n, 'value': v})
     return stats
 
 
