@@ -10,7 +10,7 @@ def kullback_leibler_divergence(p_df, q_df):
     :param q_df: a dataframe on the same probability space representing an approximation of p_df
     :return: the divergence in [0,1]
     """
-    if not (isinstance(pd.DataFrame, p_df) and isinstance(pd.DataFrame, q_df)):
+    if not (isinstance(p_df, pd.DataFrame) and isinstance(q_df, pd.DataFrame)):
         raise NotImplementedError('')
     return scipy.stats.entropy(p_df, q_df)
 
