@@ -1,0 +1,15 @@
+[run]
+branch = True
+include =
+        ./*.py
+	./*
+omit =
+        *tests*
+        *__init__*
+[report]
+exclude_lines = 
+        pragma: no cover
+        if __name__ == .__main__.:
+[html]
+directory = coverage_html_report
+
