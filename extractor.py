@@ -7,6 +7,36 @@ take a pandas series and extract stats according to column type
 """
 
 
+# def _get_strings_array(sdf: SparkDataFrame) -> list:
+#     """
+#     Get an array of column names for columns that are strings in a Spark DataFrame
+#     :param sdf: A Spark DataFrame
+#     :return: A list of string attributes
+#     """
+#     attribute_list = list()
+#     for elem in sdf.schema:
+#         if elem.jsonValue()['type'] == 'string':
+#             attribute_list.append(elem.name)
+#     attribute_list = [x.lower() for x in attribute_list]
+#     attribute_list.sort()
+#     return attribute_list
+#
+#
+# def _get_numbers_array(sdf: SparkDataFrame) -> list:
+#     """
+#     Get an array of column names for columns that are numbers in a Spark DataFrame
+#     :param sdf: A Spark DataFrame
+#     :return: A list of numerical attributes
+#     """
+#     attribute_list = list()
+#     for elem in sdf.schema:
+#         if elem.jsonValue()['type'] in {'byte', 'short', 'integer', 'long', 'bigint', 'float', 'double'} or elem.jsonValue()['type'].startswith('decimal'):
+#             attribute_list.append(elem.name)
+#     attribute_list = [x.lower() for x in attribute_list]
+#     attribute_list.sort()
+#     return attribute_list
+
+
 def numeric(series):
     stats = response.Numeric()
     stats.attr = series.name
