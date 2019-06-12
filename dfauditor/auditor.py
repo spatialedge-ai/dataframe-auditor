@@ -1,6 +1,6 @@
 import logging
 from multiprocessing import Pool, cpu_count
-import extractor
+import dfauditor.extractor
 import psutil
 
 import app_logger
@@ -13,7 +13,7 @@ def profile_number_columns(series_items):
                                                                          len(series_items[1].index),
                                                                          psutil.virtual_memory().percent,
                                                                          float(psutil.virtual_memory().free) / 1024 ** 3))
-    return extractor.numeric(series_items[1]).__dict__
+    return dfauditor.extractor.numeric(series_items[1]).__dict__
 
 
 def profile_string_columns(series_items):
@@ -21,7 +21,7 @@ def profile_string_columns(series_items):
                                                                          len(series_items[1].index),
                                                                          psutil.virtual_memory().percent,
                                                                          float(psutil.virtual_memory().free) / 1024 ** 3))
-    return extractor.string(series_items[1]).__dict__
+    return dfauditor.extractor.string(series_items[1]).__dict__
 
 
 def audit_dataframe(dataframe, nr_processes=None):

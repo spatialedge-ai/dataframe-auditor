@@ -2,11 +2,9 @@ import unittest
 
 import numpy as np
 import scipy.stats
-import measures
 import pandas as pd
 
-import extractor
-import response
+import dfauditor.measures
 
 
 class TestKLDivergence(unittest.TestCase):
@@ -23,4 +21,4 @@ class TestKLDivergence(unittest.TestCase):
         x_axis = np.arange(-10, 10, 0.01)
         # Mean = 0, SD = 2.
         dist = pd.DataFrame(scipy.stats.norm.pdf(x_axis, 0, 2))
-        self.assertAlmostEqual(measures.kullback_leibler_divergence(dist, dist), 0.0)
+        self.assertAlmostEqual(dfauditor.measures.kullback_leibler_divergence(dist, dist), 0.0)

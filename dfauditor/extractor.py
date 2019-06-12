@@ -1,5 +1,5 @@
-import metrics
-import response
+import dfauditor.metrics
+import dfauditor.response
 
 
 """
@@ -38,7 +38,7 @@ take a pandas series and extract stats according to column type
 
 
 def numeric(series):
-    stats = response.Numeric()
+    stats = dfauditor.response.Numeric()
     stats.attr = series.name
     stats.mean = series.mean()
     stats.std = series.std()
@@ -46,7 +46,7 @@ def numeric(series):
     stats.min = series.min()
     stats.max = series.max()
     stats.range = stats.max - stats.min
-    stats.median, stats.iqr = metrics.median_iqr(series)
+    stats.median, stats.iqr = dfauditor.metrics.median_iqr(series)
     stats.kurtosis = series.kurt()
     stats.skewness = series.skew()
     # todo change responses object after first order solution to contain this logic - how it computes itself
@@ -64,7 +64,7 @@ def numeric(series):
 
 def string(series, head=3):
     # Only run if at least 1 non-missing value
-    stats = response.String()
+    stats = dfauditor.response.String()
     stats.attr = series.name
     value_counts = series.value_counts(dropna=False)
     distinct = value_counts.count()
