@@ -1,5 +1,5 @@
 import logging
-import __init__
+import dfauditor.__init__
 
 
 def get(log_file=None, log_level=logging.INFO):
@@ -10,7 +10,7 @@ def get(log_file=None, log_level=logging.INFO):
     """
     # we don't require finely grained contextual info, so using straight string modifier instead of filters
     formatter = logging.Formatter(
-        '%(asctime)s [{}] %(levelname)s %(module)s - %(funcName)s: %(message)s'.format(__init__.__version__))
+        '%(asctime)s [{}] %(levelname)s %(module)s - %(funcName)s: %(message)s'.format(dfauditor.__init__.__version__))
     # we will override an existing root context
     log = logging.getLogger()
     log.setLevel(log_level)
