@@ -1,0 +1,41 @@
+import os
+from setuptools import find_packages
+from setuptools import setup
+
+base_dir = os.path.abspath(os.path.dirname(__file__))
+os.chdir(base_dir)
+
+# setup place holders for package info that comes from about.py file
+name = None
+description = None
+version = None
+uri = None
+author = None
+email = None
+classifiers = None
+
+with open("dfauditor/about.py") as about_file:
+    about = about_file.read()
+    exec(about)
+
+with open('README.md') as readme_file:
+    README = readme_file.read()
+
+EXCLUDE_FROM_PACKAGES = ['docs', 'tests*']
+
+setup(
+    name=name,
+    description=description,
+    long_description=README,
+    long_description_content_type="text/markdown",
+    version=version,
+    url=uri,
+    author=author,
+    author_email=email,
+    classifiers=classifiers,
+    packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
+    install_requires=[],
+    extras_require={},
+    test_suite="tests",
+    include_package_data=True
+)
