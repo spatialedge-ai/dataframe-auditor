@@ -21,6 +21,9 @@ with open("dfauditor/about.py") as about_file:
 with open('README.md') as readme_file:
     README = readme_file.read()
 
+with open('requirements.txt') as req:
+    requirements = list(filter(None, req.read().split('\n')))
+
 EXCLUDE_FROM_PACKAGES = ['docs', 'tests*']
 
 setup(
@@ -34,7 +37,7 @@ setup(
     author_email=email,
     classifiers=classifiers,
     packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
-    install_requires=[],
+    install_requires=requirements,
     extras_require={},
     test_suite="tests",
     include_package_data=True

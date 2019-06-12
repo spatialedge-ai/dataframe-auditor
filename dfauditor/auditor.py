@@ -3,9 +3,9 @@ from multiprocessing import Pool, cpu_count
 import dfauditor.extractor
 import psutil
 
-import app_logger
+import dfauditor.app_logger
 
-log = app_logger.get(log_level=logging.DEBUG)
+log = dfauditor.app_logger.get(log_level=logging.DEBUG)
 
 
 def profile_number_columns(series_items):
