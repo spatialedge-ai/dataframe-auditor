@@ -51,9 +51,9 @@ A dataframe auditor that computes a number characteristics of the data. This is 
   | | Percentage nan values |
      
 
-  Naturally, many of these characteristics are not independent of one another, but some may be excluded as the suits the application.
+  Naturally, many of these characteristics are not independent of one another, but some may be excluded as suits the application.
   
-  The result of auditing a dataframe using this library is that a dictionary of these measure are returned for each column in the dataframe. 
+  The result of auditing a dataframe using this library is that a dictionary of these measures is returned for each column in the dataframe. 
   For example, if a dataframe consists of a single column, named _trivial_, where all values are `1`, then
   
   ```
@@ -80,9 +80,11 @@ A dataframe auditor that computes a number characteristics of the data. This is 
   ```json
     [{
       "attr":  "trivial",
+      ...
       },
      {
       "attr:" "non-trivial"
+      ...
      }]
 ```
     
@@ -92,7 +94,7 @@ A dataframe auditor that computes a number characteristics of the data. This is 
   * Dependencies are contained in `requirements.txt`:
       
     ```bash
-    $pip install -r requirements.txt
+    pip install -r requirements.txt
     ```
     
   * Alternatively, if you wish to install directly from github, you may use:
@@ -112,8 +114,7 @@ A dataframe auditor that computes a number characteristics of the data. This is 
   * Code coverage may be determined via:
   
   ```bash
-    coverage run -m unittest discover tests
-    coverage report 
+    coverage run -m unittest discover tests && coverage report 
   ```
   
 
@@ -134,4 +135,4 @@ A dataframe auditor that computes a number characteristics of the data. This is 
   ``` 
  
 ## Contributions
-Pull requests are always welcome. 
+Pull requests are always welcome.
