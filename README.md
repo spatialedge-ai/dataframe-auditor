@@ -32,7 +32,7 @@ A dataframe auditor that computes a number characteristics of the data. This is 
   
   |Type | Measure |   
   |:---|:---|
-  |**String & Numeric** | percentage null |
+  |**String & Numeric** | Percentage null |
   |**String** | Distinct counts |
   | | Most frequent categories |
   |**Numeric** | Mean | 
@@ -79,12 +79,10 @@ A dataframe auditor that computes a number characteristics of the data. This is 
   For a dataframe with columns `["trivial", "non-trivial"]`, a list of dictionaries is returned:
   ```json
     [{
-      "attr":  "trivial",
-      ...
+      "attr":  "trivial"
       },
      {
-      "attr:" "non-trivial"
-      ...
+      "attr": "non-trivial"
      }]
 ```
     
