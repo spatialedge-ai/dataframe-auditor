@@ -21,7 +21,7 @@ A dataframe auditor that computes a number characteristics of the data.
 
 ## Summary
 
-  Data profiling is important in data analysis and analytics, as well as in determining characteristics of data pipelines.
+  [Data profiling](https://en.wikipedia.org/wiki/Data_profiling) is important in data analysis and analytics, as well as in determining characteristics of data pipelines.
   This repository aims to provide a means to extract a selection of attributes from data.
   
   It is currently focused on processing _pandas_ dataframes, but this functionality is being 
