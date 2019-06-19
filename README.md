@@ -21,7 +21,7 @@ A dataframe auditor that computes a number characteristics of the data.
 
 ## Summary
 
-  Data profiling is important in data analysis and analytics, as well as in determining characteristics of data pipelines.
+  [Data profiling](https://en.wikipedia.org/wiki/Data_profiling) is important in data analysis and analytics, as well as in determining characteristics of data pipelines.
   This repository aims to provide a means to extract a selection of attributes from data.
   
   It is currently focused on processing _pandas_ dataframes, but this functionality is being 
@@ -56,8 +56,8 @@ A dataframe auditor that computes a number characteristics of the data.
   The result of auditing a dataframe using this library is that a dictionary of these measures is returned for each column in the dataframe. 
   For example, if a dataframe consists of a single column, named _trivial_, where all values are `1`, then
   
-  ```
-    {
+  ```json
+    [{
      "attr":  "trivial",
      "type": "NUMERIC",
      "median": 1.0,
@@ -73,7 +73,7 @@ A dataframe auditor that computes a number characteristics of the data.
      "range": 0,
      "p_nan": 0.0,
      "mean": 1.0
-     }
+     }]
   ```
   
   For a dataframe with columns `["trivial", "non-trivial"]`, a list of dictionaries is returned:
