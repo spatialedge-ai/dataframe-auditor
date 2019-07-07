@@ -3,8 +3,8 @@ import unittest
 import numpy as np
 import pandas as pd
 
-import dfauditor.extractor
-import dfauditor.response
+import dataframeauditor.extractor
+import dataframeauditor.response
 
 
 class TestExtractorNumeric(unittest.TestCase):
@@ -20,8 +20,8 @@ class TestExtractorNumeric(unittest.TestCase):
         cls.mixed_df = None
 
     def test_trivial(self):
-        resp = dfauditor.extractor.numeric(self.numeric_df.trivial)
-        expected = dfauditor.response.Numeric()
+        resp = dataframeauditor.extractor.numeric(self.numeric_df.trivial)
+        expected = dataframeauditor.response.Numeric()
         expected.__dict__ = {'attr': 'trivial',
                              'type': 'NUMERIC',
                              'median': 1.0,
@@ -47,14 +47,14 @@ class TestExtractorNumeric(unittest.TestCase):
         df_nan = self.numeric_df.trivial.copy()
         # unlike `at`, `loc` changes the int type column to float (there is no NaN in panda-land float)
         df_nan.loc[5] = np.nan
-        resp = dfauditor.extractor.numeric(df_nan)
+        resp = dataframeauditor.extractor.numeric(df_nan)
         self.assertAlmostEqual(10.0, resp.p_nan)
 
         # this should agree with None too
         df_none = self.numeric_df.trivial.copy()
         df_none.loc[5] = None
         df_none.loc[4] = None
-        resp = dfauditor.extractor.numeric(df_none)
+        resp = dataframeauditor.extractor.numeric(df_none)
         self.assertAlmostEqual(20.0, resp.p_nan)
 
 
@@ -69,13 +69,13 @@ class TestExtractorString(unittest.TestCase):
         cls.df = pd.DataFrame(data)
 
     def test_trivial(self):
-        resp = dfauditor.extractor.string(self.df.trivial)
+        resp = dataframeauditor.extractor.string(self.df.trivial)
         self.assertEqual(resp.distinct, 1)
         self.assertEqual(resp.freq[0]['value'], 10)
 
     def test_mix(self):
-        resp = dfauditor.extractor.string(self.df.mix)
-        expected = dfauditor.response.String()
+        resp = dataframeauditor.extractor.string(self.df.mix)
+        expected = dataframeauditor.response.String()
         expected.__dict__.update({'attr': 'mix',
                                   'type': 'STRING',
                                   'distinct': 4,

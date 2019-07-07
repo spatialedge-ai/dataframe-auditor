@@ -1,11 +1,11 @@
-import dfauditor.__init__
+import dataframeauditor.__init__
 
 
-name = "dfauditor"
+name = "dataframeauditor"
 description = (
     "A dataframe auditor that extracts descriptive statistics from dataframe columns"
 )
-version = dfauditor.__init__.__version__
+version = dataframeauditor.__init__.__version__
 author = "Jacques du Toit"
 email = ""
 uri = "https://github.com/jackdotwa/dataframe-auditor"

@@ -1,11 +1,11 @@
 import logging
 from multiprocessing import Pool, cpu_count
-import dfauditor.extractor
+import dataframeauditor.extractor
 import psutil
 
-import dfauditor.app_logger
+import dataframeauditor.app_logger
 
-log = dfauditor.app_logger.get(log_level=logging.DEBUG)
+log = dataframeauditor.app_logger.get(log_level=logging.DEBUG)
 
 
 def profile_number_columns(series_items):
@@ -13,7 +13,7 @@ def profile_number_columns(series_items):
                                                                          len(series_items[1].index),
                                                                          psutil.virtual_memory().percent,
                                                                          float(psutil.virtual_memory().free) / 1024 ** 3))
-    return dfauditor.extractor.numeric(series_items[1]).__dict__
+    return dataframeauditor.extractor.numeric(series_items[1]).__dict__
 
 
 def profile_string_columns(series_items):
@@ -21,10 +21,10 @@ def profile_string_columns(series_items):
                                                                          len(series_items[1].index),
                                                                          psutil.virtual_memory().percent,
                                                                          float(psutil.virtual_memory().free) / 1024 ** 3))
-    return dfauditor.extractor.string(series_items[1]).__dict__
+    return dataframeauditor.extractor.string(series_items[1]).__dict__
 
 
-def audit_dataframe(dataframe, nr_processes=None):
+def audit(dataframe, nr_processes=None):
     """
     produce a profile of the dataframe
     :param dataframe: a pandas dataframe

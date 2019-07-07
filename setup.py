@@ -14,7 +14,7 @@ author = None
 email = None
 classifiers = None
 
-with open("dfauditor/about.py") as about_file:
+with open("dataframeauditor/about.py") as about_file:
     about = about_file.read()
     exec(about)
 
