@@ -24,6 +24,15 @@ def profile_string_columns(series_items):
     return dfauditor.extractor.string(series_items[1]).__dict__
 
 
+def profile_decile_bins(series_items):
+    log.debug('name: {}; row.count: {}; used: {}% free: {:.2f}GB'.format(series_items[0],
+                                                                         len(series_items[1].index),
+                                                                         psutil.virtual_memory().percent,
+                                                                         float(
+                                                                             psutil.virtual_memory().free) / 1024 ** 3))
+    return dfauditor.extractor.decile_bins((series_items[1]).__dict__)
+
+
 def audit_dataframe(dataframe, nr_processes=None):
     """
     produce a profile of the dataframe

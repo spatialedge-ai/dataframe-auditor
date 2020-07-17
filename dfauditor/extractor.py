@@ -74,3 +74,11 @@ def string(series, head=3):
     return stats
 
 
+def decile_bins(series):
+    stats = dfauditor.response.DecileBins()
+    stats.attr = series.name
+    value_counts = series.value_counts(dropna=False)
+    stats.perc_1 =
+    for n, v in zip(value_counts.index[0,head], value_counts.iloc[0:head].values):
+        stats.count.append({'name': n, 'value': v})
+    return stats
