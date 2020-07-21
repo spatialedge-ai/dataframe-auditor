@@ -30,7 +30,7 @@ def profile_decile_bins(series_items):
                                                                          psutil.virtual_memory().percent,
                                                                          float(
                                                                              psutil.virtual_memory().free) / 1024 ** 3))
-    return dfauditor.extractor.decile_bins((series_items[1]).__dict__)
+    return dfauditor.extractor.decile_bins(series_items[1]).__dict__
 
 
 def audit_dataframe(dataframe, nr_processes=None):
