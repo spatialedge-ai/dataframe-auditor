@@ -51,10 +51,10 @@ def audit_dataframe(dataframe, nr_processes=None):
             # using generic numpy type labels
             number_df = dataframe.select_dtypes(include=['number'])
             string_df = dataframe.select_dtypes(include=['object'])
-            bin_df = dataframe.select_dtypes(include=['number'])
+            # bin_df = dataframe.select_dtypes(include=['number'])
 
             res_list = pool.map(profile_number_columns, number_df.iteritems())
             res_list += pool.map(profile_string_columns, string_df.iteritems())
-            res_list += pool.map(profile_decile_bins, bin_df.iteritems())
+            # res_list += pool.map(profile_decile_bins, bin_df.iteritems())
             return res_list
 
