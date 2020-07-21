@@ -1,6 +1,6 @@
 import dfauditor.metrics
 import dfauditor.response
-
+import pandas as pd
 
 """
 take a pandas series and extract stats according to column type
@@ -50,14 +50,14 @@ def numeric(series):
     stats.kurtosis = series.kurt()
     stats.skewness = series.skew()
     # todo change responses object after first order solution to contain this logic - how it computes itself
-    #stats['kl_divergence'] = measures.kullback_leibler_divergence()
+    # stats['kl_divergence'] = measures.kullback_leibler_divergence()
     # the mean absolute deviation is around the mean here
     stats.mad = series.mad()
     stats.p_zeros = float(series[series == 0].count()) / len(series.index) * 100
     stats.p_nan = float(series.isna().sum()) / len(series.index) * 100
     # todo - leave this here for __str__ of the eventual object
-    #stats.p_zeros = '{0:.2f}'.format()
-    #stats.p_nan = '{0:.2f}'.format()
+    # stats.p_zeros = '{0:.2f}'.format()
+    # stats.p_nan = '{0:.2f}'.format()
 
     return stats
 
@@ -78,9 +78,6 @@ def decile_bins(series):
     stats = dfauditor.response.DecileBins()
     bins = pd.DataFrame(pd.cut(series, 10))
     stats.attr = series.name
-    value_counts = series.value_counts(dropna=False)
-    stats.max = series.max()
-    stats.min = series.min()
     stats.perc_1 = bins.groupby(0).size()[0]
     stats.perc_2 = bins.groupby(0).size()[1]
     stats.perc_3 = bins.groupby(0).size()[2]
@@ -92,10 +89,4 @@ def decile_bins(series):
     stats.perc_9 = bins.groupby(0).size()[8]
     stats.perc_10 = bins.groupby(0).size()[9]
 
-
-
-
-
-    for n, v in zip(value_counts.index[0,head], value_counts.iloc[0:head].values):
-        stats.count.append({'name': n, 'value': v})
     return stats
