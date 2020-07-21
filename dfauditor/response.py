@@ -32,9 +32,9 @@ class DecileBins(StatsResponse):
     def __init__(self):
         super(Numeric, self).__init__()
         self.__dict__.update(dict().fromkeys(
-            {'1_perc', '2_perc', '3_perc',
-             '4_perc', '5_perc', '6_perc', '7_perc', '8_perc',
-             '9_perc', '10_perc'
+            {'max', 'min', 'perc_1', 'perc_2', 'perc_3',
+             'perc_4', 'perc_5', 'perc_6', 'perc_7', 'perc_8',
+             'perc_9', 'perc_10'
              }
         ))
         self.type = 'NUMERIC'

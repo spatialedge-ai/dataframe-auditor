@@ -5,7 +5,7 @@ import psutil
 
 import dfauditor.app_logger
 
-log = dfauditor.app_logger.get(log_level=logging.DEBUG)
+log = dfauditor.app_logger.get(log_level=logging.INFO)
 
 
 def profile_number_columns(series_items):

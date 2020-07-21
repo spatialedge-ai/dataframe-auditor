@@ -76,9 +76,26 @@ def string(series, head=3):
 
 def decile_bins(series):
     stats = dfauditor.response.DecileBins()
+    bins = pd.DataFrame(pd.cut(series, 10))
     stats.attr = series.name
     value_counts = series.value_counts(dropna=False)
-    stats.perc_1 =
+    stats.max = series.max()
+    stats.min = series.min()
+    stats.perc_1 = bins.groupby(0).size()[0]
+    stats.perc_2 = bins.groupby(0).size()[1]
+    stats.perc_3 = bins.groupby(0).size()[2]
+    stats.perc_4 = bins.groupby(0).size()[3]
+    stats.perc_5 = bins.groupby(0).size()[4]
+    stats.perc_6 = bins.groupby(0).size()[5]
+    stats.perc_7 = bins.groupby(0).size()[6]
+    stats.perc_8 = bins.groupby(0).size()[7]
+    stats.perc_9 = bins.groupby(0).size()[8]
+    stats.perc_10 = bins.groupby(0).size()[9]
+
+
+
+
+
     for n, v in zip(value_counts.index[0,head], value_counts.iloc[0:head].values):
         stats.count.append({'name': n, 'value': v})
     return stats
