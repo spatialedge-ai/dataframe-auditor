@@ -1,6 +1,11 @@
+import logging
 import dfauditor.metrics
 import dfauditor.response
 import pandas as pd
+
+import dfauditor.app_logger
+
+log = dfauditor.app_logger.get(log_level=logging.INFO)
 
 """
 take a pandas series and extract stats according to column type
@@ -76,21 +81,18 @@ def string(series, head=3):
 
 def decile_bins(series):
     stats = dfauditor.response.DecileBins()
-    bins = pd.DataFrame(series)
-    print(bins)
-    bins = pd.cut(bins, 10, duplicates='drop')
-    bins = bins.rename(columns={0: 'interval'})
-    print(bins)
+    bins = pd.cut(series, 10)
+    bins = pd.DataFrame(bins)
     stats.attr = series.name
-    stats.perc_1 = bins.groupby("interval").size()[0]
-    stats.perc_2 = bins.groupby("interval").size()[1]
-    stats.perc_3 = bins.groupby("interval").size()[2]
-    stats.perc_4 = bins.groupby("interval").size()[3]
-    stats.perc_5 = bins.groupby("interval").size()[4]
-    stats.perc_6 = bins.groupby("interval").size()[5]
-    stats.perc_7 = bins.groupby("interval").size()[6]
-    stats.perc_8 = bins.groupby("interval").size()[7]
-    stats.perc_9 = bins.groupby("interval").size()[8]
-    stats.perc_10 = bins.groupby('interval').size()[9]
+    stats.perc_1 = bins.groupby(series.name).size()[0]
+    stats.perc_2 = bins.groupby(series.name).size()[1]
+    stats.perc_3 = bins.groupby(series.name).size()[2]
+    stats.perc_4 = bins.groupby(series.name).size()[3]
+    stats.perc_5 = bins.groupby(series.name).size()[4]
+    stats.perc_6 = bins.groupby(series.name).size()[5]
+    stats.perc_7 = bins.groupby(series.name).size()[6]
+    stats.perc_8 = bins.groupby(series.name).size()[7]
+    stats.perc_9 = bins.groupby(series.name).size()[8]
+    stats.perc_10 = bins.groupby(series.name).size()[9]
 
     return stats

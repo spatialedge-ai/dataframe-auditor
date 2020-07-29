@@ -33,7 +33,7 @@ class DecileBins(StatsResponse):
     def __init__(self):
         super(DecileBins, self).__init__()
         self.__dict__.update(dict().fromkeys(
-            {'perc_1', 'perc_2', 'perc_3',
+            {'attr','perc_1', 'perc_2', 'perc_3',
              'perc_4', 'perc_5', 'perc_6', 'perc_7', 'perc_8',
              'perc_9', 'perc_10'
              }
