@@ -1,6 +1,11 @@
+import logging
 import dfauditor.metrics
 import dfauditor.response
+import pandas as pd
 
+import dfauditor.app_logger
+
+log = dfauditor.app_logger.get(log_level=logging.INFO)
 
 """
 take a pandas series and extract stats according to column type
@@ -50,14 +55,14 @@ def numeric(series):
     stats.kurtosis = series.kurt()
     stats.skewness = series.skew()
     # todo change responses object after first order solution to contain this logic - how it computes itself
-    #stats['kl_divergence'] = measures.kullback_leibler_divergence()
+    # stats['kl_divergence'] = measures.kullback_leibler_divergence()
     # the mean absolute deviation is around the mean here
     stats.mad = series.mad()
     stats.p_zeros = float(series[series == 0].count()) / len(series.index) * 100
     stats.p_nan = float(series.isna().sum()) / len(series.index) * 100
     # todo - leave this here for __str__ of the eventual object
-    #stats.p_zeros = '{0:.2f}'.format()
-    #stats.p_nan = '{0:.2f}'.format()
+    # stats.p_zeros = '{0:.2f}'.format()
+    # stats.p_nan = '{0:.2f}'.format()
 
     return stats
 
@@ -74,3 +79,20 @@ def string(series, head=3):
     return stats
 
 
+def decile_bins(series):
+    stats = dfauditor.response.DecileBins()
+    bins = pd.cut(series, 10)
+    bins = pd.DataFrame(bins)
+    stats.attr = series.name
+    stats.perc_1 = bins.groupby(series.name).size()[0]
+    stats.perc_2 = bins.groupby(series.name).size()[1]
+    stats.perc_3 = bins.groupby(series.name).size()[2]
+    stats.perc_4 = bins.groupby(series.name).size()[3]
+    stats.perc_5 = bins.groupby(series.name).size()[4]
+    stats.perc_6 = bins.groupby(series.name).size()[5]
+    stats.perc_7 = bins.groupby(series.name).size()[6]
+    stats.perc_8 = bins.groupby(series.name).size()[7]
+    stats.perc_9 = bins.groupby(series.name).size()[8]
+    stats.perc_10 = bins.groupby(series.name).size()[9]
+
+    return stats
