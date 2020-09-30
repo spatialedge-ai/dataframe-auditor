@@ -11,7 +11,7 @@ class Numeric(StatsResponse):
         self.__dict__.update(dict().fromkeys(
             {'mean', 'std', 'variance',
              'min', 'max', 'range', 'kurtosis', 'skewness',
-             'mad', 'p_zeros', 'p_nan', 'median', 'iqr'
+             'mad', 'p_zeros', 'p_nan', 'median', 'iqr', 'sum'
              }
         ))
         self.type = 'NUMERIC'

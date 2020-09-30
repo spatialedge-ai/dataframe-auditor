@@ -60,6 +60,7 @@ def numeric(series):
     stats.mad = series.mad()
     stats.p_zeros = float(series[series == 0].count()) / len(series.index) * 100
     stats.p_nan = float(series.isna().sum()) / len(series.index) * 100
+    stats.sum = series.sum()
     # todo - leave this here for __str__ of the eventual object
     # stats.p_zeros = '{0:.2f}'.format()
     # stats.p_nan = '{0:.2f}'.format()
