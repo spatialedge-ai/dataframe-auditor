@@ -85,15 +85,15 @@ def decile_bins(series):
     bins = pd.cut(series, 10)
     bins = pd.DataFrame(bins)
     stats.attr = series.name
-    stats.perc_1 = bins.groupby(series.name).size()[0]
-    stats.perc_2 = bins.groupby(series.name).size()[1]
-    stats.perc_3 = bins.groupby(series.name).size()[2]
-    stats.perc_4 = bins.groupby(series.name).size()[3]
-    stats.perc_5 = bins.groupby(series.name).size()[4]
-    stats.perc_6 = bins.groupby(series.name).size()[5]
-    stats.perc_7 = bins.groupby(series.name).size()[6]
-    stats.perc_8 = bins.groupby(series.name).size()[7]
-    stats.perc_9 = bins.groupby(series.name).size()[8]
-    stats.perc_10 = bins.groupby(series.name).size()[9]
+    stats.perc_1 = bins.groupby(series.name).size()[1]
+    stats.perc_2 = bins.groupby(series.name).size()[2]
+    stats.perc_3 = bins.groupby(series.name).size()[3]
+    stats.perc_4 = bins.groupby(series.name).size()[4]
+    stats.perc_5 = bins.groupby(series.name).size()[5]
+    stats.perc_6 = bins.groupby(series.name).size()[6]
+    stats.perc_7 = bins.groupby(series.name).size()[7]
+    stats.perc_8 = bins.groupby(series.name).size()[8]
+    stats.perc_9 = bins.groupby(series.name).size()[9]
+    stats.perc_10 = bins.groupby(series.name).size()[10]
 
     return stats
